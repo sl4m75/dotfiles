@@ -1,0 +1,71 @@
+!! Colorscheme
+
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #1d1f21
+*.color8:       #969896
+
+! red
+*.color1:       #cc6666
+*.color9:       #cc6666
+
+! green
+*.color2:       #b5bd68
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #f0c674
+*.color11:      #f0c674
+
+! blue
+*.color4:       #81a2be
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #b294bb
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #8abeb7
+*.color14:      #8abeb7
+
+! white
+*.color7:       #c5c8c6
+*.color15:      #ffffff
+
+!URxvt.background:   [80]#000000
+
+!xft:Inconsolata:size=11:antialias=true,
+URxvt.font:          xft:Inconsolata Nerd Font Mono:size=12:antialias=true
+URxvt.cursorColor:  magenta
+URxvt.iso14755: false
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+!URxvt.internalBorder: 24
+URxvt.internalBorder: 4
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+!! perl extension urxvt-perls
+URxvt.perl-ext:     default,matcher,url-select,keyboard-select
+!! url select
+URxvt.keysym.M-u:   perl:url-select:select_next
+URxvt.url-select.launcher:  /usr/bin/xdg-open
+URxvt.url-underline:    true
+!! keyboard select
+URxvt.keysym.M-Escape:   perl:keyboard-select:activate
+URxvt.keysym.C-l:   \033[1;5C
+URxvt.keysym.C-h:   \033[1;5D
+
+!! matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button:   1

@@ -1,8 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
  
-"light status bar configuration
-set timeoutlen=100 ttimeoutlen=0
+"light status bar configuration and timing
+set timeoutlen=3000 ttimeoutlen=100
+set updatetime=300
 set laststatus=2
 set noshowmode
 let g:lightline = {
@@ -20,37 +21,31 @@ set rtp+=~/.vim/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " let Vundle manage Vundle, required
+Plugin 'neoclide/coc.nvim'
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'ervandew/supertab'
 Plugin 'preservim/nerdcommenter'
 Plugin 'mattn/emmet-vim'
-Plugin 'dense-analysis/ale'
-Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'honza/vim-snippets'
+Plugin 'gregsexton/MatchTag'
+Plugin 'Raimondi/delimitMate'
 Plugin 'preservim/nerdtree' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" java auto completion:
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
-let g:JavaComplete_ClosingBrace = 1
-
+map <F9> :NERDTreeToggle <CR>
+set omnifunc=syntaxcomplete#Complete
 set mouse=a
-:nmap ; :
+":nmap ; :
+let mapleader = ","
 filetype plugin on
 set hlsearch
 set incsearch
@@ -65,12 +60,16 @@ set encoding=utf-8
 set number relativenumber
 " auto complete ctrl+n:
 set wildmode=longest,list,full
-map <C-c> \c 
+map <C-c> ,cc
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+"tab switching
+nnoremap <silent> <C-w> :tabn<CR>
+nnoremap <silent> <C-q> :tabp<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
+nmap <C-n> o<Esc>k
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
@@ -81,3 +80,27 @@ if has("autocmd")
     \ endif
   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif    
+" coc mappings
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"if has('nvim')
+"  inoremap <silent><expr> <c-space> coc#refresh()
+"else
+"  inoremap <silent><expr> <c-@> coc#refresh()
+"endif
+"
+"nnoremap <silent><nowait> <c-a>  :CocAction<CR>
+map <leader>jc :!javac %<CR>  
+map <leader>jj :!java %:r<CR>:!<CR>
+map <leader>ll :!ls<CR>
+
+

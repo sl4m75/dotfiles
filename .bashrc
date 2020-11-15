@@ -11,7 +11,6 @@ alias \
         ll="ls -lh --color=auto" \
         grep="grep --color=auto" \
         diff="diff --color=auto" \
-
 ex () {
  if [ -z "$1" ]; then
     # display usage if no parameters given

@@ -1,3 +1,5 @@
+"recongnize .hbs files as html
+au BufNewFile,BufRead,BufReadPost *.hbs setfiletype html
 set nocompatible              " be iMproved, required
 filetype off                  " required
 "light status bar configuration and timing
@@ -21,13 +23,14 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " let Vundle manage Vundle, required
 Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'neoclide/coc.nvim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdcommenter'
-Plugin 'mattn/emmet-vim'
-Plugin 'honza/vim-snippets'
-Plugin 'gregsexton/MatchTag'
-Plugin 'Raimondi/delimitMate'
+Plugin 'mattn/emmet-vim'    
+Plugin 'gregsexton/MatchTag'  
+"Auto completion for brackets,quotes,etc :
+Plugin 'Raimondi/delimitMate' 
 Plugin 'preservim/nerdtree' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
@@ -45,6 +48,10 @@ map <F9> :NERDTreeToggle <CR>
 set omnifunc=syntaxcomplete#Complete
 set mouse=a
 ":nmap ; :
+" handling system copy/paste using xclip
+vmap ,y :!xclip -f -sel clip<CR>
+map ,p :-1r !xclip -o -sel clip<CR>
+
 let mapleader = ","
 filetype plugin on
 set hlsearch
@@ -60,10 +67,9 @@ set encoding=utf-8
 set number relativenumber
 " auto complete ctrl+n:
 set wildmode=longest,list,full
-map <C-c> ,cc
+map <C-c> ,c<space>
+nmap <C-s> :w<cr>
 map <C-h> <C-w>h
-"map <C-j> <C-w>j
-"map <C-k> <C-w>k
 map <c-l> <c-w>l
 "tab switching
 nnoremap <silent> <c-t> :tabnew<cr>
@@ -99,12 +105,15 @@ endfunction
 "endif
 "
 "nnoremap <silent><nowait> <c-a>  :CocAction<CR>
+
 map <leader>jc :!javac %<CR>  
 map <leader>jj :!java %:r<CR>:!<CR>
 map <leader>ll :!ls<CR>
 "Run xrdb whenever Xdefaults or Xresources are updated.
-       autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
-"theme and colorscheme:
-colorscheme dracula
+autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+"themes and colorscheme:
 "set t_Co=16
-
+"set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight"set termguicolors

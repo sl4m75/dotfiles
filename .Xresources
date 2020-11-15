@@ -1,20 +1,20 @@
 !! Colorscheme
-!! special
+! special
 *.foreground:   #c5c8c6
 *.background:   #1d1f21
 *.cursorColor:  #c5c8c6
 
 ! black
 *.color0:       #1d1f21
-*.color8:       #ff8894
+*.color8:       #89101c
 
 ! red
-*.color1:       #cc6666
-*.color9:       #cc6666
+*.color1:       #74a721
+*.color9:       #a400d3
 
 ! green
 *.color2:       #b5bd68
-*.color10:      #ef26c3
+*.color10:      #168a1e
 
 ! yellow
 *.color3:       #f0c674

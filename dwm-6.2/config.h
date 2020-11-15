@@ -6,7 +6,7 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans Mono:size=10","Inconsolata Nerd Font Mono:size=14" };
+static const char *fonts[]          = { "DejaVu Sans Mono:size=12","Inconsolata Nerd Font Mono:size=14" };
 static const char dmenufont[]       = "monospace:size=13";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -66,6 +66,7 @@ static const char *termcmd[]  = { "urxvt", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "PCM", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "PCM", "5%-", NULL };
 static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "PCM", "toggle", NULL };
+static const char *runscript[]={"bash","/home/sl4m/Documents/runsc.sh",NULL};
 
 #include "shiftview.c"
 static Key keys[] = {
@@ -102,6 +103,7 @@ static Key keys[] = {
 	{ 0,                            XF86AudioMute,             spawn,          {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = runscript } },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

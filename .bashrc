@@ -11,6 +11,9 @@ alias \
         ll="ls -lh --color=auto" \
         grep="grep --color=auto" \
         diff="diff --color=auto" \
+        findp="ps aux |grep -i $1" \
+    sdn="sudo shutdown -h now" 
+
 ex () {
  if [ -z "$1" ]; then
     # display usage if no parameters given
@@ -43,9 +46,10 @@ ex () {
  fi
 }    
 
+export _JAVA_AWT_WM_NONREPARENTING=1
 export HISTSIZE= HISTFILESIZE=10000
 export EDITOR=/bin/vim
 export QT_QPA_PLATFORMTHEME=qt5ct
 export LC_ALL=en_US.UTF-8
 export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\w\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"
-
+export PATH=$PATH:/home/sl4m/programming/eclipse

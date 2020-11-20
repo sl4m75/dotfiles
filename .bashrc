@@ -14,6 +14,7 @@ alias \
         findp="ps aux |grep -i $1" \
     sdn="sudo shutdown -h now" 
 
+alias mpv="mpv --screenshot-directory=$HOME/Pictures" 
 ex () {
  if [ -z "$1" ]; then
     # display usage if no parameters given

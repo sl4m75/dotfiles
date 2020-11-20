@@ -3,6 +3,7 @@ slstatus &
 feh --bg-scale ~/Pictures/mh.png &
 # i need my zoomer lights
 ckb-next &
+setxkbmap -option caps:escape &
 # Hides the mouse cursor after 3 seconds of inactivity
 unclutter -idle 3 &
 xrdb -merge ~/.Xresources &

@@ -6,7 +6,9 @@ alias \
         rm="rm -v" \
         mkd="mkdir -pv" \
         v="vim" \
+        cl="clear" \
         ls="ls -hN --color=auto --group-directories-first" \
+        gst="git status"\
         la="ls -a --color=auto" \
         ll="ls -lh --color=auto" \
         grep="grep --color=auto" \
@@ -15,6 +17,7 @@ alias \
     sdn="sudo shutdown -h now" 
 
 alias mpv="mpv --screenshot-directory=$HOME/Pictures" 
+shopt -s autocd
 ex () {
  if [ -z "$1" ]; then
     # display usage if no parameters given

@@ -65,12 +65,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *termcmd[]  = { "urxvt",NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "PCM", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "PCM", "5%-", NULL };
 static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "PCM", "toggle", NULL };
 static const char *runscript[]={"bash","/home/sl4m/Documents/runsc.sh",NULL};
-
+static const char *shutdown[]={"bash","shutdown","now",NULL};
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,7 +106,9 @@ static Key keys[] = {
 	{ 0,                            XF86AudioMute,             spawn,          {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = runscript } },
+	{ MODKEY,                       XK_r,        spawn,          {.v = runscript } },
+	{ MODKEY|ShiftMask,		XK_F12,      spawn,          {.v = shutdown } },
+	{ MODKEY,	                XK_m,  focusmaster,    {0} },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

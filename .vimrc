@@ -1,7 +1,9 @@
 "recongnize .hbs files as html
 au BufNewFile,BufRead,BufReadPost *.hbs setfiletype html
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
 "light status bar configuration and timing
 set timeoutlen=3000 ttimeoutlen=100
 set updatetime=300
@@ -20,34 +22,24 @@ let g:lightline = {
 "" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" let Vundle manage Vundle, required
-Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'neoclide/coc.nvim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'mattn/emmet-vim'    
 Plugin 'gregsexton/MatchTag'  
-"Auto completion for brackets,quotes,etc :
-Plugin 'Raimondi/delimitMate' 
+Plugin 'honza/vim-snippets'
+Plugin 'Raimondi/delimitMate' "Auto completion for brackets,quotes,etc 
 Plugin 'preservim/nerdtree' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 " Put your non-Plugin stuff after this line
 map <F9> :NERDTreeToggle <CR>
 set omnifunc=syntaxcomplete#Complete
 set mouse=a
-":nmap ; :
+
 " handling system copy/paste using xclip
 vmap ,y :!xclip -f -sel clip<CR>
 map ,p :-1r !xclip -o -sel clip<CR>
@@ -67,6 +59,7 @@ set encoding=utf-8
 set number relativenumber
 " auto complete ctrl+n:
 set wildmode=longest,list,full
+"NerdComment toggle
 map <C-c> ,c<space>
 nmap <C-s> :w<cr>
 map <C-h> <C-w>h
@@ -75,7 +68,9 @@ map <c-l> <c-w>l
 nnoremap <silent> <c-t> :tabnew<cr>
 nnoremap <silent> <c-k> :tabn<cr>
 nnoremap <silent> <c-j> :tabp<cr>
+"new line under
 nmap <c-n> o<esc>k
+"switch to i-beam when in insertmode
 if has("autocmd")
   au vimenter,insertleave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
@@ -86,7 +81,27 @@ if has("autocmd")
     \ endif
   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif    
+
+" Spell Check
+let b:myLang=0
+let g:myLangList=["nospell","en_us"]
+function! ToggleSpell()
+  let b:myLang=b:myLang+1
+  if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+  if b:myLang==0
+    setlocal nospell
+  else
+    execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+  endif
+  echo "spell checking language:" g:myLangList[b:myLang]
+endfunction
+
+nmap <silent> <F5> :call ToggleSpell()<CR>
+
 " coc mappings
+set signcolumn=number
+command! -nargs=0 Format :call CocAction('format')
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -98,16 +113,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-"if has('nvim')
-"  inoremap <silent><expr> <c-space> coc#refresh()
-"else
-"  inoremap <silent><expr> <c-@> coc#refresh()
-"endif
-"
-"nnoremap <silent><nowait> <c-a>  :CocAction<CR>
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-map <leader>jc :!javac %<CR>  
-map <leader>jj :!java %:r<CR>:!<CR>
+"command mappings  
+autocmd Filetype java set makeprg=javac\ %
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+map <leader>jc :make<Return>:copen<Return>
+map <leader>jj :!clear && java  %:r<CR>
 map <leader>ll :!ls<CR>
 "Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
@@ -116,4 +128,4 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 "set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
-colorscheme tokyonight"set termguicolors
+colorscheme tokyonight

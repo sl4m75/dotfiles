@@ -26,6 +26,7 @@ Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'neoclide/coc.nvim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdcommenter'
+Plugin 'haya14busa/vim-asterisk'
 Plugin 'mattn/emmet-vim'    
 Plugin 'gregsexton/MatchTag'  
 Plugin 'honza/vim-snippets'
@@ -38,7 +39,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 map <F9> :NERDTreeToggle <CR>
 set omnifunc=syntaxcomplete#Complete
-set mouse=a
+"set mouse=a
 
 " handling system copy/paste using xclip
 vmap ,y :!xclip -f -sel clip<CR>
@@ -70,6 +71,8 @@ nnoremap <silent> <c-k> :tabn<cr>
 nnoremap <silent> <c-j> :tabp<cr>
 "new line under
 nmap <c-n> o<esc>k
+"search for selected text in v mode
+map *   <Plug>(asterisk-*)
 "switch to i-beam when in insertmode
 if has("autocmd")
   au vimenter,insertleave * silent execute '!echo -ne "\e[2 q"' | redraw!
@@ -114,6 +117,8 @@ function! s:check_back_space() abort
 endfunction
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+map <leader>jg :CocAction<CR>
 
 "command mappings  
 autocmd Filetype java set makeprg=javac\ %

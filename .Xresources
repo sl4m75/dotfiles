@@ -1,65 +1,66 @@
-!! Colorscheme
-! special
-*.foreground:   #c5c8c6
-*.background:   #1d1f21
-*.cursorColor:  #c5c8c6
+!! Colorscheme ! special
+*.foreground:   #d2c5bc
+*.background:   #101010
+*.cursorColor:  #d2c5bc
 
 ! black
-*.color0:       #1d1f21
-*.color8:       #89101c
+*.color0:       #202020
+*.color8:       #606060
 
 ! red
-*.color1:       #74a721
-*.color9:       #a400d3
+*.color1:       #b91e2e
+*.color9:       #d14548
 
 ! green
-*.color2:       #b5bd68
-*.color10:      #168a1e
+*.color2:       #81957c
+*.color10:      #a7b79a
 
 ! yellow
-*.color3:       #f0c674
-*.color11:      #f0c674
+*.color3:       #f9bb80
+*.color11:      #fae3a0
 
 ! blue
-*.color4:       #81a2be
-*.color12:      #81a2be
+*.color4:       #356579
+*.color12:      #7491a1
 
 ! magenta
-*.color5:       #b294bb
-*.color13:      #b294bb
+*.color5:       #2d2031
+*.color13:      #87314e
 
 ! cyan
-*.color6:       #8abeb7
-*.color14:      #8abeb7
+*.color6:       #0b3452
+*.color14:      #0f829d
 
 ! white
-*.color7:       #c5c8c6
-*.color15:      #ffffff
+*.color7:       #909090
+*.color15:      #fff0f0
 
-!URxvt.background:   [80]#000000
-
+URxvt.title: urxvt
 URxvt.font:          xft:Inconsolata Nerd Font Mono:size=15:antialias=true, xft:DejaVu Sans Mono:size=15:antialias=true
 URxvt.cursorColor:  magenta
 URxvt.iso14755: false
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
-URxvt.geometry: 92x24
-!URxvt.internalBorder: 24
 URxvt.internalBorder: 4
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048
 URxvt.scrollBar: false
-!URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
-URxvt.depth: 24
+
+!URxvt.depth: 32
+!urxvt*background:  rgba:0000/0000/0200/c800
+!URxvt.transparent: true
+!Urxvt.shading: 30
+
 !! perl extension urxvt-perls
-URxvt.perl-ext:     default,matcher,url-select,keyboard-select
+URxvt.perl-ext:     default,matcher,url-select,keyboard-select,selection-to-clipboard,
 !! url select
 URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.url-select.launcher:  /usr/bin/xdg-open
 URxvt.url-underline:    true
 !! keyboard select
+
 URxvt.keysym.M-Escape:   perl:keyboard-select:activate
 URxvt.keysym.C-l:   \033[1;5C
 URxvt.keysym.C-h:   \033[1;5D

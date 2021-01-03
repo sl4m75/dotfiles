@@ -1,20 +1,32 @@
+#tets
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
+
 alias \
         cp="cp -iv" \
         mv="mv -iv" \
         rm="rm -v" \
         mkd="mkdir -pv" \
         v="vim" \
+        ka="killall" \
         cl="clear" \
         ls="ls -hN --color=auto --group-directories-first" \
+        ffp="firefox --no-remote --ProfileManager" \
+        weather="curl wttr.in/Istanbul" \
+        vpn="sudo openvpn ~/metrovpn.ovpn" \
+        myip="~/Documents/scripts/myip.sh" \
+        dl="youtube-dl" \
         gst="git status"\
+        #scrot="date +%s | xargs -I {} scrot {}.png" \
         la="ls -a --color=auto" \
         ll="ls -lh --color=auto" \
+        update="sudo pacman -Syu" \
         grep="grep --color=auto" \
+        feh="feh --auto-rotate" \
         diff="diff --color=auto" \
         findp="ps aux |grep -i $1" \
-    sdn="sudo shutdown -h now" 
+        sfu="nohup node ~/programming/web/sfu/app.js &" \
+    sdn="shutdown -h now" 
 
 alias mpv="mpv --screenshot-directory=$HOME/Pictures" 
 shopt -s autocd
@@ -49,6 +61,14 @@ ex () {
     fi
  fi
 }    
+# Color for man pages, less ...
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export HISTSIZE= HISTFILESIZE=10000

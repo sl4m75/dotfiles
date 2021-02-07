@@ -1,6 +1,7 @@
 "recongnize .hbs files as html
 au BufNewFile,BufRead,BufReadPost *.hbs setfiletype html
 
+let mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -42,10 +43,11 @@ set omnifunc=syntaxcomplete#Complete
 "set mouse=a
 
 " handling system copy/paste using xclip
-vmap ,y :!xclip -f -sel clip<CR>
-map ,p :-1r !xclip -o -sel clip<CR>
+"set clipboard=unnamedplus
 
-let mapleader = ","
+vmap <silent><leader>y :'<,'>w !xclip -f -sel clip<CR>
+map <silent><leader>p :-1r !xclip -o -sel clip<CR>
+
 filetype plugin on
 set hlsearch
 set incsearch
@@ -131,6 +133,7 @@ autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 "themes and colorscheme:
 "set t_Co=16
 "set termguicolors
+
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight

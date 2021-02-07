@@ -7,8 +7,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans Mono:size=12","Inconsolata Nerd Font Mono:size=14" };
-static const char dmenufont[]       = "monospace:size=13";
+static const char *fonts[]          = { "DejaVu Sans Mono:size=11:antialias:true","Inconsolata Nerd Font Mono:size=13:antialias:true" };
+static const char dmenufont[]       = "DejaVu Sans Mono:size=12:antialias:true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -78,9 +78,20 @@ static const char *cmdsoundtoggle[]  = { "pulsemixer","--toggle-mute", NULL };
 /*"-e","'mv, $f ~/Pictures/'",*/
 static const char *select_screenshot[] = {"scrot", "-s", "%s.png", NULL};
 static const char *runscript[]={"bash","/home/sl4m/Documents/runsc.sh",NULL};
-static const char *lockscreen[]={"slock",NULL};
+static const char *lockscreen[]={"bash","/home/sl4m/Documents/scripts/lock.sh",NULL};
 static const char *brightUp[]={"xbacklight","-inc","5",NULL};
 static const char *brightDown[]={"xbacklight","-dec","5",NULL};
+
+static const char *nextSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","n",NULL};
+static const char *previousSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","p",NULL};
+static const char *playPauseSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","t",NULL};
+
+/*
+static const char *nextSong[]={"playerctl","-p","spotifyd","next",NULL};
+static const char *previousSong[]={"playerctl","-p","spotifyd","previous",NULL};
+static const char *playPauseSong[]={"playerctl","-p","spotifyd","play-pause",NULL};
+*/
+
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -115,13 +126,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,      shiftview,      {.i = -1 } },
 	{ 0,                            XF86PowerOff,              spawn,          {.v = lockscreen } },
 	{ 0,                            XF86MonBightnessUp,        spawn,          {.v = brightUp } },
-	{ 0,                            XF86MonBightnessDown,        spawn,          {.v = brightDown } },
+	{ 0,                            XF86MonBightnessDown,      spawn,          {.v = brightDown } },
 	{ 0,                            XF86AudioMute,             spawn,          {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
 	{ MODKEY,                       XK_r,        spawn,          {.v = runscript } },
-	{ MODKEY,	                XK_m,  focusmaster,    {0} },
-	{ MODKEY,			Print,	     spawn,		{.v=select_screenshot}},
+	{ MODKEY,	                XK_m,  	     focusmaster,    {0} },
+	{ MODKEY,			Print,	     spawn,	     {.v=select_screenshot}},
+	{ MODKEY,			XK_F11,	     spawn,	     {.v=playPauseSong}},
+	{ MODKEY,			XK_F12,	     spawn,	     {.v=nextSong}},
+	{ MODKEY,			XK_F10,	     spawn,	     {.v=previousSong}},
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

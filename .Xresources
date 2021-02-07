@@ -36,28 +36,30 @@
 *.color15:      #fff0f0
 
 URxvt.title: urxvt
-URxvt.font:          xft:Inconsolata Nerd Font Mono:size=15:antialias=true, xft:DejaVu Sans Mono:size=15:antialias=true
+URxvt.font:          xft:Inconsolata Nerd Font Mono:style=Regular:size=15:antialias=true, xft:DejaVu Sans Mono:size=15:antialias=true
 URxvt.cursorColor:  magenta
 URxvt.iso14755: false
 URxvt.letterSpace: 0
-URxvt.lineSpace: 0
-URxvt.internalBorder: 4
+!URxvt.lineSpace: 0
+URxvt.internalBorder: 5
 URxvt.cursorBlink: true
-URxvt.cursorUnderline: false
-URxvt.saveline: 2048
+!URxvt.cursorUnderline: false
+URxvt.saveline: 4096
 URxvt.scrollBar: false
-URxvt.urgentOnBell: true
+!URxvt.urgentOnBell: true
 
-!URxvt.depth: 32
-!urxvt*background:  rgba:0000/0000/0200/c800
+URxvt.depth: 32
+URxvt.background:   [85]#07000a
+
+!fake transparency
 !URxvt.transparent: true
 !Urxvt.shading: 30
 
 !! perl extension urxvt-perls
-URxvt.perl-ext:     default,matcher,url-select,keyboard-select,selection-to-clipboard,
+URxvt.perl-ext:     default,matcher,url-select,keyboard-select,selection-to-clipboard,resize-font
 !! url select
 URxvt.keysym.M-u:   perl:url-select:select_next
-URxvt.url-select.launcher:  /usr/bin/xdg-open
+URxvt.url-select.launcher:  /usr/local/bin/surf
 URxvt.url-underline:    true
 !! keyboard select
 
@@ -66,5 +68,10 @@ URxvt.keysym.C-l:   \033[1;5C
 URxvt.keysym.C-h:   \033[1;5D
 URxvt.keyboard-select.clipboard:  true
 !! matcher
-URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.url-launcher: /usr/local/surf
 URxvt.matcher.button:   1
+!! font resizing
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show

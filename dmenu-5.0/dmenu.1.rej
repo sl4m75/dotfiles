@@ -1,0 +1,21 @@
+--- dmenu.1	2019-09-25 12:55:42.666319316 -0600
++++ dmenu.1	2019-09-25 12:48:38.848249931 -0600
+@@ -3,7 +3,7 @@
+ dmenu \- dynamic menu
+ .SH SYNOPSIS
+ .B dmenu
+-.RB [ \-bfivP ]
++.RB [ \-bfiv ]
+ .RB [ \-l
+ .IR lines ]
+ .RB [ \-m
+@@ -47,9 +47,6 @@ is faster, but will lock up X until stdi
+ .B \-i
+ dmenu matches menu items case insensitively.
+ .TP
+-.B \-P
+-dmenu will not directly display the keyboard input, but instead replace it with dots. All data from stdin will be ignored.
+-.TP
+ .BI \-l " lines"
+ dmenu lists items vertically, with the given number of lines.
+ .TP

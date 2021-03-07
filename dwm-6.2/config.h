@@ -7,6 +7,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+/*"Inconsolata Nerd Font Mono:size=13:antialias:true"*/
 static const char *fonts[]          = { "DejaVu Sans Mono:size=11:antialias:true","Inconsolata Nerd Font Mono:size=13:antialias:true" };
 static const char dmenufont[]       = "DejaVu Sans Mono:size=12:antialias:true";
 static const char col_gray1[]       = "#222222";
@@ -34,7 +35,6 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "URxvt",   NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Gnome-calculator",  NULL,   NULL,   0,         1,          0,           0,        -1 },
-{ "Tabbed Pane Example",  NULL,    NULL,       0,         0,          0,           1,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -72,10 +72,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "urxvt",NULL };
+static const char *nnn[]  = { "urxvt","-e","nnn","-Udxe",NULL };
 static const char *cmdsoundup[]  = {"pulsemixer","--change-volume","+5",NULL};
 static const char *cmdsounddown[]  = {"pulsemixer","--change-volume","-5",NULL};
 static const char *cmdsoundtoggle[]  = { "pulsemixer","--toggle-mute", NULL };
-/*"-e","'mv, $f ~/Pictures/'",*/
+static const char *clip_menu[] = {"clipmenu", NULL};
 static const char *select_screenshot[] = {"scrot", "-s", "%s.png", NULL};
 static const char *runscript[]={"bash","/home/sl4m/Documents/runsc.sh",NULL};
 static const char *lockscreen[]={"bash","/home/sl4m/Documents/scripts/lock.sh",NULL};
@@ -136,6 +137,8 @@ static Key keys[] = {
 	{ MODKEY,			XK_F11,	     spawn,	     {.v=playPauseSong}},
 	{ MODKEY,			XK_F12,	     spawn,	     {.v=nextSong}},
 	{ MODKEY,			XK_F10,	     spawn,	     {.v=previousSong}},
+	{ MODKEY,			XK_n,	     spawn,	     {.v=nnn}},
+	{ MODKEY,			XK_c,	     spawn,	     {.v=clip_menu}},
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

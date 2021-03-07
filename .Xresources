@@ -24,7 +24,7 @@
 *.color12:      #7491a1
 
 ! magenta
-*.color5:       #2d2031
+*.color5:       #5e306c
 *.color13:      #87314e
 
 ! cyan
@@ -44,12 +44,13 @@ URxvt.letterSpace: 0
 URxvt.internalBorder: 5
 URxvt.cursorBlink: true
 !URxvt.cursorUnderline: false
-URxvt.saveline: 4096
+URxvt.saveline: 6144
 URxvt.scrollBar: false
 !URxvt.urgentOnBell: true
 
 URxvt.depth: 32
-URxvt.background:   [85]#07000a
+!URxvt.background:   [30]#07000a
+URxvt.background:   [80]#07000a
 
 !fake transparency
 !URxvt.transparent: true
@@ -59,16 +60,15 @@ URxvt.background:   [85]#07000a
 URxvt.perl-ext:     default,matcher,url-select,keyboard-select,selection-to-clipboard,resize-font
 !! url select
 URxvt.keysym.M-u:   perl:url-select:select_next
-URxvt.url-select.launcher:  /usr/local/bin/surf
+URxvt.url-select.launcher:  /bin/xdg-open
 URxvt.url-underline:    true
 !! keyboard select
-
 URxvt.keysym.M-Escape:   perl:keyboard-select:activate
 URxvt.keysym.C-l:   \033[1;5C
 URxvt.keysym.C-h:   \033[1;5D
 URxvt.keyboard-select.clipboard:  true
 !! matcher
-URxvt.url-launcher: /usr/local/surf
+URxvt.url-launcher: /bin/xdg-open
 URxvt.matcher.button:   1
 !! font resizing
 URxvt.keysym.C-minus:     resize-font:smaller

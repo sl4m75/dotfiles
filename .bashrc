@@ -6,6 +6,7 @@ alias \
         cp="cp -iv" \
         mv="mv -iv" \
         rm="rm -v" \
+        rmd="rm -rf" \
         mkd="mkdir -pv" \
         v="vim" \
         ka="killall" \
@@ -14,31 +15,46 @@ alias \
         lo="libreoffice" \
         lw="librewolf" \
         ffp="librewolf --no-remote --ProfileManager" \
-        weather="curl wttr.in/Istanbul" \
-        vpn="sudo openvpn ~/metrovpn.ovpn & disown" \
+        weather="curl https://www.wttr.in/Istanbul" \
         py="python" \
         myip="~/Documents/scripts/myip.sh" \
-        dl="youtube-dl" \
+        dl="youtube-dl --restrict-filenames" \
         gotop="gotop -c vice -s -a" \
-        surf="tabbed -r 2 surf -pe x 'https://duckduckgo.com' " \
         gst="git status"\
-        neofetch="neofetch neofetch --ascii_distro tux --refresh_rate on" \
+        neofetch="neofetch --refresh_rate on --ascii_colors 5 1 " \
         less="LESSHISTFILE=/dev/null less" \
         la="ls -a --color=auto" \
         ll="ls -lh --color=auto" \
         update="sudo pacman -Syu" \
         gocrazy="ckb-next -m fulltilt && urxvt -tr -e curl parrot.live & disown & exit"\
         grep="grep -i --color=auto" \
+        egrep="egrep --color=auto" \
         feh="feh --auto-rotate" \
         diff="diff --color=auto" \
         findp="ps aux |grep -i $1" \
         sfu="cd ~/programming/web/sfu && node app.js & disown" \
     sdn="shutdown -h now" 
 
-alias mpv="mpv --volume=50 --screenshot-directory=$HOME/Pictures" 
+alias mpv="mpv --volume=70 --screenshot-directory=$HOME/Pictures" 
 
 shopt -s autocd
 #set -o vi
+
+n () {
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    nnn -Udxe "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
 
 ex () {
  if [ -z "$1" ]; then
@@ -86,6 +102,17 @@ export EDITOR=/bin/vim
 export QT_QPA_PLATFORMTHEME=qt5ct
 export LC_ALL=en_US.UTF-8 
 #export LC_ADDRESS=en_US.UTF-8
+
+#nnn config
+export NNN_COLORS="5136"
+export NNN_PLUG='g:_git log;v:imgview;f:fzcd;b:setbg;p:preview-tabbed'
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_FCOLORS='c1e2812e006033f7c6d6abc4'
+###
+export CM_IGNORE_WINDOW="[kK]ee[pP]ass"
+
+#ask for sudo passwd using dmenu with password patch
+export SUDO_ASKPASS=/home/sl4m/Documents/scripts/askpass.sh
 
 export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\w\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"
 

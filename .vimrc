@@ -60,6 +60,8 @@ set expandtab
 set fileformat=unix
 set encoding=utf-8
 set number relativenumber
+" Save as root using sudo
+cmap w!! w !sudo tee > /dev/null %
 " auto complete ctrl+n:
 set wildmode=longest,list,full
 "NerdComment toggle
@@ -129,6 +131,7 @@ map <leader>jc :make<Return>:copen<Return>
 map <leader>jj :!clear && java  %:r<CR>
 map <leader>ll :!ls<CR>
 "Run xrdb whenever Xdefaults or Xresources are updated.
+autocmd BufWritePost *java !javac %
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 "themes and colorscheme:
 "set t_Co=16

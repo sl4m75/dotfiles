@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "","", "" , "" , "" };
+static const char *tags[] = { "", "", "", "", "","", "" , "" };
 
 
 static const Rule rules[] = {
@@ -32,9 +32,12 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "LibreWolf", NULL,     NULL,         1 << 1,    0,          0,          -1,        -1 },
+	{ "qBittorrent", NULL,   NULL,         1 << 8,    0,          0,          -1,        -1 },
+	{ "Virt-manager", NULL,   NULL,        1 << 4,    0,          0,          -1,        -1 },
 	{ "URxvt",   NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Gnome-calculator",  NULL,   NULL,   0,         1,          0,           0,        -1 },
+	{ "Display",  NULL,   NULL,	       0,         1,          0,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -77,15 +80,19 @@ static const char *cmdsoundup[]  = {"pulsemixer","--change-volume","+5",NULL};
 static const char *cmdsounddown[]  = {"pulsemixer","--change-volume","-5",NULL};
 static const char *cmdsoundtoggle[]  = { "pulsemixer","--toggle-mute", NULL };
 static const char *clip_menu[] = {"clipmenu", NULL};
-static const char *select_screenshot[] = {"scrot", "-s", "%s.png", NULL};
-static const char *runscript[]={"bash","/home/sl4m/Documents/runsc.sh",NULL};
-static const char *lockscreen[]={"bash","/home/sl4m/Documents/scripts/lock.sh",NULL};
+static const char *select_screenshot[] = {"scrot", "-s", "/home/sl4m/Pictures/screenshots/%d-%m-%Y_$wx$h.png", NULL};
+static const char *runscript[]={"/bin/sh","/home/sl4m/Documents/runsc.sh",NULL};
+static const char *lockscreen[]={"/bin/sh","/home/sl4m/Documents/scripts/lock",NULL};
 static const char *brightUp[]={"xbacklight","-inc","5",NULL};
 static const char *brightDown[]={"xbacklight","-dec","5",NULL};
 
-static const char *nextSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","n",NULL};
-static const char *previousSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","p",NULL};
-static const char *playPauseSong[]={"/bin/bash","/home/sl4m/Documents/scripts/cur_play.sh","t",NULL};
+static const char *nextSong[]={"/bin/sh","/home/sl4m/Documents/scripts/cur_play.sh","n",NULL};
+static const char *previousSong[]={"/bin/sh","/home/sl4m/Documents/scripts/cur_play.sh","p",NULL};
+static const char *playPauseSong[]={"/bin/sh","/home/sl4m/Documents/scripts/cur_play.sh","t",NULL};
+
+static const char *xcompmgrToggle[]={"/bin/bash","/home/sl4m/Documents/scripts/xcompToggle",NULL};
+
+static const char *pulsemixer[]={"urxvt","-e","pulsemixer",NULL};
 
 /*
 static const char *nextSong[]={"playerctl","-p","spotifyd","next",NULL};
@@ -106,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY|ShiftMask,             XK_Tab,    view,           {0} },
+	{ MODKEY, 	                XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,           	XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -114,6 +121,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,             		XK_f,      togglefullscr,  {0} },
+	{ MODKEY,             		XK_f,      spawn,  	   { .v = xcompmgrToggle} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -138,6 +146,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_F12,	     spawn,	     {.v=nextSong}},
 	{ MODKEY,			XK_F10,	     spawn,	     {.v=previousSong}},
 	{ MODKEY,			XK_n,	     spawn,	     {.v=nnn}},
+	{ MODKEY,			XK_v,	     spawn,	     {.v=pulsemixer}},
 	{ MODKEY,			XK_c,	     spawn,	     {.v=clip_menu}},
 
 	TAGKEYS(                        XK_1,                      0)

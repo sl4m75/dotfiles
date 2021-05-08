@@ -1,13 +1,12 @@
-#tets
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
 alias \
         cp="cp -iv" \
         mv="mv -iv" \
-        rm="rm -v" \
-        rmd="rm -rf" \
+        rm="trash-put -iv" \
         mkd="mkdir -pv" \
+        cat="bat --theme Dracula" \
         v="vim" \
         ka="killall" \
         cl="clear" \
@@ -16,29 +15,32 @@ alias \
         lw="librewolf" \
         ffp="librewolf --no-remote --ProfileManager" \
         weather="curl https://www.wttr.in/Istanbul" \
+        ftphone="lftp 192.168.1.27:2121 -u admin" \
+        http="sudo python3 -m http.server 80" \
         py="python" \
+        sx="sxiv" \
         myip="~/Documents/scripts/myip.sh" \
         dl="youtube-dl --restrict-filenames" \
-        gotop="gotop -c vice -s -a" \
+        gt="gotop -c vice -s -a" \
         gst="git status"\
-        neofetch="neofetch --refresh_rate on --ascii_colors 5 1 " \
-        less="LESSHISTFILE=/dev/null less" \
+        neofetch="neofetch --refresh_rate on " \
         la="ls -a --color=auto" \
         ll="ls -lh --color=auto" \
         update="sudo pacman -Syu" \
-        gocrazy="ckb-next -m fulltilt && urxvt -tr -e curl parrot.live & disown & exit"\
         grep="grep -i --color=auto" \
-        egrep="egrep --color=auto" \
+        egrep="egrep -i --color=auto" \
         feh="feh --auto-rotate" \
         diff="diff --color=auto" \
         findp="ps aux |grep -i $1" \
-        sfu="cd ~/programming/web/sfu && node app.js & disown" \
-    sdn="shutdown -h now" 
-
-alias mpv="mpv --volume=70 --screenshot-directory=$HOME/Pictures" 
+        sfu="cd ~/Programming/web/sfu && node app.js & disown" \
 
 shopt -s autocd
+
 #set -o vi
+
+batdiff() {
+    git diff --name-only --diff-filter=d | xargs bat --diff
+}
 
 n () {
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
@@ -88,16 +90,20 @@ ex () {
  fi
 }    
 # Color for man pages, less ...
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+#export LESS_TERMCAP_mb=$'\e[1;32m'
+#export LESS_TERMCAP_md=$'\e[1;32m'
+#export LESS_TERMCAP_me=$'\e[0m'
+#export LESS_TERMCAP_se=$'\e[0m'
+#export LESS_TERMCAP_so=$'\e[01;33m'
+#export LESS_TERMCAP_ue=$'\e[0m'
+#export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-export HISTSIZE= HISTFILESIZE=10000
+export HISTSIZE= HISTFILESIZE=50000
+export HISTCONTROL=ignorespace
+export LESSHISTFILE=/dev/null
 export EDITOR=/bin/vim
 export QT_QPA_PLATFORMTHEME=qt5ct
 export LC_ALL=en_US.UTF-8 
@@ -105,15 +111,14 @@ export LC_ALL=en_US.UTF-8
 
 #nnn config
 export NNN_COLORS="5136"
-export NNN_PLUG='g:_git log;v:imgview;f:fzcd;b:setbg;p:preview-tabbed'
+export NNN_PLUG='v:imgview;f:fzcd;b:setbg;p:preview-tabbed;g:bookmarks;c:cleanfilename'
 export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_FCOLORS='c1e2812e006033f7c6d6abc4'
+export NNN_TRASH=1
 ###
 export CM_IGNORE_WINDOW="[kK]ee[pP]ass"
 
 #ask for sudo passwd using dmenu with password patch
 export SUDO_ASKPASS=/home/sl4m/Documents/scripts/askpass.sh
 
-export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\w\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"
-
-export PATH=$PATH:/home/sl4m/programming/eclipse
+export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\w\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"

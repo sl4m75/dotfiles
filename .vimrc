@@ -1,6 +1,3 @@
-"recongnize .hbs files as html
-au BufNewFile,BufRead,BufReadPost *.hbs setfiletype html
-
 let mapleader = ","
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -13,9 +10,13 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             ['gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [ [ 'aa', 'mode', 'paste' ],
+      \             ['gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'vim_logo','fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
       \ },
+      \ 'component':{'vim_logo':''},
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ }
@@ -32,16 +33,17 @@ Plugin 'mattn/emmet-vim'
 Plugin 'gregsexton/MatchTag'  
 Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate' "Auto completion for brackets,quotes,etc 
-Plugin 'preservim/nerdtree' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
-map <F9> :NERDTreeToggle <CR>
+"map <F9> :NERDTreeToggle <CR>
 set omnifunc=syntaxcomplete#Complete
 "set mouse=a
 
+" format json
+au BufNewFile,BufRead,BufReadPost *.json :%!jq .
 " handling system copy/paste using xclip
 "set clipboard=unnamedplus
 
@@ -110,10 +112,10 @@ set signcolumn=number
 command! -nargs=0 Format :call CocAction('format')
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -123,6 +125,7 @@ endfunction
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 map <leader>jg :CocAction<CR>
+map <leader>f :Format<CR> 
 
 "command mappings  
 autocmd Filetype java set makeprg=javac\ %
@@ -134,9 +137,9 @@ map <leader>ll :!ls<CR>
 autocmd BufWritePost *java !javac %
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 "themes and colorscheme:
-"set t_Co=16
+"set t_Co=256
 "set termguicolors
 
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+"colorscheme tokyonight

@@ -2491,3 +2491,4 @@ focusmaster(const Arg *arg)
 	if (c)
 		focus(c);
 }
+

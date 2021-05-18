@@ -33,7 +33,7 @@ static const Rule rules[] = {
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "LibreWolf", NULL,     NULL,         1 << 1,    0,          0,          -1,        -1 },
-	{ "qBittorrent", NULL,   NULL,         1 << 8,    0,          0,          -1,        -1 },
+	{ "qBittorrent", NULL,   NULL,         1 << 7,    0,          0,          -1,        -1 },
 	{ "Virt-manager", NULL,   NULL,        1 << 4,    0,          0,          -1,        -1 },
 	{ "URxvt",   NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Gnome-calculator",  NULL,   NULL,   0,         1,          0,           0,        -1 },

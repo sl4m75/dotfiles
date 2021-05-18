@@ -1,6 +1,6 @@
 xrandr --output eDP1 --mode 1920x1080  --output HDMI1 --right-of eDP1  --mode 1920x1080 --rate 75.00 &
 aslstatus &
-feh --bg-fill ~/Pictures/screenshots/be.png &
+feh --bg-fill ~/Pictures/screenshots/porco2.png &
 # i need my zoomer lights
 ckb-next -b &
 #notification daemon

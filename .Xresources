@@ -44,7 +44,7 @@ URxvt.letterSpace: 0
 URxvt.internalBorder: 5
 URxvt.cursorBlink: true
 !URxvt.cursorUnderline: false
-URxvt.saveline: 9216
+URxvt.saveline: 10000
 URxvt.scrollBar: false
 !URxvt.urgentOnBell: true
 
@@ -59,9 +59,8 @@ URxvt.depth: 32
 URxvt.background:   [50]#07000a
 !URxvt.background:   [80]#07000a
 
-!fake transparency
-!URxvt.transparent: true
-!Urxvt.shading: 30
+!swicth theme on the fly
+URxvt.keysym.M-F6: command:\033]11;#000000\007\033]10;#ffffff\007\033]12;#ffffff\007\033]4;0;#000000\007\033]4;1;#cc0000\007\033]4;2;#4e9a06\007\033]4;3;#c4a000\007\033]4;4;#3465a4\007\033]4;5;#75507b\007\033]4;6;#06989a\007\033]4;7;#d3d7cf\007\033]4;8;#555753\007\033]4;9;#ef2929\007\033]4;10;#8ae234\007\033]4;11;#fce94f\007\033]4;12;#729fcf\007\033]4;13;#ad7fa8\007\033]4;14;#34e2e2\007\033]4;15;#eeeeec\007
 
 !URxvt.modifier: super
 

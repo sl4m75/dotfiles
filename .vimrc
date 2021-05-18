@@ -28,7 +28,6 @@ Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'neoclide/coc.nvim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdcommenter'
-Plugin 'haya14busa/vim-asterisk'
 Plugin 'mattn/emmet-vim'    
 Plugin 'gregsexton/MatchTag'  
 Plugin 'honza/vim-snippets'
@@ -77,6 +76,8 @@ nnoremap <silent> <c-k> :tabn<cr>
 nnoremap <silent> <c-j> :tabp<cr>
 "new line under
 nmap <c-n> o<esc>k
+"unwrap?
+map Q gqq
 "search for selected text in v mode
 map *   <Plug>(asterisk-*)
 "switch to i-beam when in insertmode

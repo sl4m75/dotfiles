@@ -27,6 +27,7 @@ alias \
         la="ls -a --color=auto" \
         ll="ls -lh --color=auto" \
         update="sudo pacman -Syu" \
+        yeet="sudo pacman -Rsn" \
         grep="grep -i --color=auto" \
         egrep="egrep -i --color=auto" \
         feh="feh --auto-rotate" \
@@ -116,9 +117,10 @@ export NNN_FIFO='/tmp/nnn.fifo'
 export NNN_FCOLORS='c1e2812e006033f7c6d6abc4'
 export NNN_TRASH=1
 ###
+
 export CM_IGNORE_WINDOW="[kK]ee[pP]ass"
 
 #ask for sudo passwd using dmenu with password patch
 export SUDO_ASKPASS=/home/sl4m/Documents/scripts/askpass.sh
 
-export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\w\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;92m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;27m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;6m\][\[$(tput sgr0)\]\[\033[38;5;122m\]\W\[$(tput sgr0)\]\[\033[38;5;6m\]]\[$(tput sgr0)\]:ֆ \[$(tput sgr0)\]"
